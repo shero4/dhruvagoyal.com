@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css" />
+    
+</head>
+
+<body>
+</body>
+<script>
+    files = ['aboutme.txt','projects.txt','resume.pdf','contact.txt']
+
+    function makefilestring(files) {
+        filestring = files[0]
+        for(i = 1; i<files.length; i++) {
+            filestring += '  ' + files[i]
+        }
+    }
+
+    function makelink(link, title) {
+        return '[[!;;;;' + link + ']' + title + ']'
+    }
+
+    makefilestring(files)
+
+    $('body').terminal({
+        whoami: function () {
+            this.echo('root');
+        },
+        pwd: function() {
+            this.echo('/root');
+        },
+        ls: function() {
+            this.echo(filestring)
+        },
+        dir: function() {
+            this.echo(filestring)
+        },
+        cat: function(filename) { 
+            if(filename == 'aboutme.txt') {
+                aboutme =`Dhruva Goyal is an 18-year-old full-stack web developer & CEH certified cybersecurity enthusiast studying at The Manipal Institute of Technology, Manipal.
+\nHe likes solving problems with code, and in his free time, he enjoys working on personal projects and experimenting with new tools and languages. Dhruva also enjoys participating in hackathons and various other events.
+\nHe is currently working on getting his OSCP certification`
+                this.echo(aboutme)
+            } else if(filename == 'projects.txt') {
+                projects = {
+                    'shutai': 'https://anishbajaj.com/shutai.html',
+                    'ponder': 'https://github.com/shero4/hack-run',
+                    'bels': 'https://play.google.com/store/apps/details?id=io.bels.app&hl=en_US&gl=US', //shift to netlify
+                    'ananda': '',
+
+                }
+            } else if(filename == 'resume.pdf') {
+                window.location.href = "/Resume.pdf"
+            } else if(filename == 'contact.txt') {
+                contact = `You can reach me at goyal.dhruva@gmail.com or you can message me on any one of my social media accounts:`
+                socials = {
+                    'Facebook': 'https://www.facebook.com/notdhruvagoyal',
+                    'Instagram': 'https://www.instagram.com/og.goyal',
+                    'LinkedIn': 'https://www.linkedin.com/in/dhruvagoyal/',
+                    'Twitter': 'https://twitter.com/dhruvagoyal',
+                    'GitHub': 'https://github.com/shero4'
+                }
+                this.echo(contact);
+                for(let key in socials) {
+                    this.echo(makelink(socials[key], key))
+                }
+            } else {
+                this.echo('file does not exist')
+            }
+        },
+        touch: function(filename) { 
+            files.push(filename)
+            makefilestring(files)
+        },
+        rm: function(filename) {
+            index = files.indexOf(filename)
+            if (index > -1) {
+                files.splice(index, 1);
+                makefilestring(files)
+            } else {
+                this.echo('File does not exist')
+            }
+        }
+    }, {
+        completion: true,
+        greetings: 'Terminal 1.0.1',
+        name: 'shero_terminal',
+        prompt: '[[;red;]root@shero4]:[[;lightblue;]~][[b;white;]$] '
+    });
+</script>
+
+</html>
+
+<!-- 
+    What all to put in website
+-> Introduction - done
+-> Resume - done
+-> Projects
+    1. shut.ai
+    2. MINET X
+    4. BELS
+    5. Ananda
+    6. Ponder
+-> Work exp
+    1. CEH
+    2. Internship at QLS Academy
+    3. MINET President
+-> Contact(Social Links) - done
+-->
