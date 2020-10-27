@@ -55,20 +55,20 @@
                     'shutai': 'https://anishbajaj.com/shutai.html',
                     'ponder': 'https://github.com/shero4/hack-run',
                     'bels': 'https://play.google.com/store/apps/details?id=io.bels.app&hl=en_US&gl=US', //shift to netlify
-                    'ananda': '',
+                    'ananda': 'http://ananda-app.com/',
                 }
                 for (let key in projects) {
                     this.echo(makelink(projects[key], key))
                 }
             } else if(filename == 'workexp.txt') {
                 work = {
-                    'ceh': '',
+                    'ceh': 'Credential ID ECC9732146058',
                     'QLS Academy Internship': '',
                     'MINET President': ''
                 }
-                for (let key in work) {
-                    this.echo(makelink(work[key], key))
-                }
+                this.echo('ceh: ' + 'Credential ID ECC9732146058')
+                this.echo('QLS Academy Internship')
+                this.echo('MINET President')
             } else if (filename == 'resume.pdf') {
                 window.location.href = "/Resume.pdf"
             } else if (filename == 'contact.txt') {
