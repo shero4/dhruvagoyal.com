@@ -28,7 +28,7 @@
     function makelink(link, title) {
         return '[[!;;;;' + link + ']' + title + ']'
     }
-
+    
     makefilestring(files)
 
     $('body').terminal({
@@ -43,6 +43,9 @@
         },
         dir: function () {
             this.echo(filestring)
+        },
+        help: function() {
+            echo_command();
         },
         cat: function (filename) {
             if (filename == 'aboutme.txt') {
@@ -103,27 +106,10 @@
         }
     }, {
         completion: true,
-        greetings: 'Terminal 1.0.1',
+        greetings: 'Terminal 1.0 ([[b;;]double tab] for a list of commands)',
         name: 'shero_terminal',
         prompt: '[[;red;]root@shero4]:[[;lightblue;]~][[b;white;]$] '
     });
 </script>
 
 </html>
-
-<!-- 
-    What all to put in website
--> Introduction - done
--> Resume - done
--> Projects
-    1. shut.ai
-    2. MINET X
-    4. BELS
-    5. Ananda
-    6. Ponder
--> Work exp
-    1. CEH
-    2. Internship at QLS Academy
-    3. MINET President
--> Contact(Social Links) - done
--->
